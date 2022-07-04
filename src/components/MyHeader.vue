@@ -1,10 +1,12 @@
 <template>
+<header class="header" >
   <nav class="nav">
-    <div class="logo">
+    <div class="nav__item logo">
       <img src="@/assets/logo.svg" alt="">
     </div>
-    <router-link to="/">Discover</router-link>
-    <router-link to="/about">Make Your Burger</router-link>
+    <div class="nav__item" >Discover</div>
+    <div class="nav__item" >Make Your Burger</div>
+
     
   </nav>
   <div class="nav__call" >
@@ -12,6 +14,8 @@
       <a class="call__number" href="#">8 800 437-87-22</a>
     </div>
   <router-view/>
+</header>
+
 </template>
 
 <script>
@@ -22,7 +26,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.nav {
-  
+.header {
+  display: flex;
+  justify-content: space-between;
+  .nav, .nav__call{
+    display: flex;
+    align-items: center;
+    
+  }
+  .nav__item, .call__text, .call__number {
+    margin: 0 10%;
+    font-family: OpenSans Regular;
+    font-size: 1rem;
+  }
+  .nav__call {
+    .call__text {
+      color: $danger;
+    }
+  }
 }
 </style>
