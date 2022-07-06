@@ -1,9 +1,8 @@
 <template>
-<div class="container">
-  <my-header></my-header>
-</div>
 
-  
+<my-header></my-header>
+  app
+  <router-view></router-view>
 </template>
 
 <script>
@@ -37,28 +36,6 @@ export default {
   src: local("OpenSans"),
    url(./fonts/OpenSans/OpenSans-ExtraBold.ttf) format("truetype");
 }
-/////colors
-//primary
-$primary: #5243C2;
-$danger: #FF4D4F;
-$black: #1F2939;
-$muted:  #949BA6;
-$titanWhite: #F5F5FF;
-$blackSqueeze: #F0F7FA;
-$white: #fff;
-//red
-$red500: #FF4D4F;
-$red400: #FF9293;
-$red300: #FFC8C8;
-$red200: #FFEDED;
-//indigo
-$indigo600: #473AA6;
-$indigo500: #5243C2;
-//gray
-$gray200:#D4D4D4;
-$gray100:#F4F4F4;
-
-
 
 /////
 *,
