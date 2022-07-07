@@ -2,9 +2,7 @@
 <div class="container">
   <header class="header" >
   <nav class="nav">
-    <div class="nav__item logo">
-      <img src="@/assets/logo.svg" alt="">
-    </div>
+    <my-logo></my-logo>
     <!-- <div @click="$router.push('/')" class="nav__item">Discover</div>
     <div @click="$router.push('/makeBurger')" class="nav__item ">Make Your Burger</div> -->
       <!--  -->
@@ -27,14 +25,9 @@
 
 <script>
 export default {
+  
   methods: {
-    activePage() {
-      // nav__items = document.querySelectorAll('.nav__item')
-      // console.log(nav__items);
-      // let nav__item = event.target;
-      // nav__item.classList.add("active")
-      // console.log("fe");
-    }
+
   },
     
 }
@@ -42,7 +35,10 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/variables.scss";
+
+
 .header {
+  margin: 3% 0 0 0;;
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
@@ -53,13 +49,11 @@ export default {
     
   }
   .nav__item, .call__text, .call__number {
-    margin: 0 8%;
+    margin: 0 0 0 13%;
     font-family: OpenSans Regular;
     font-size: 1rem;
   }
-  .nav__item + .active {
-    color: red;
-  }
+
   .nav__call {
     .call__text {
       color: $danger;
