@@ -5,15 +5,14 @@
     <div class="nav__item logo">
       <img src="@/assets/logo.svg" alt="">
     </div>
-    <div 
-      @click="$router.push('/')"
-      class="nav__item"
-    >Discover  </div>
-    <div
-      @click="$router.push('/makeBurger')"
-      
-      class="nav__item "
-    >Make Your Burger</div>
+    <!-- <div @click="$router.push('/')" class="nav__item">Discover</div>
+    <div @click="$router.push('/makeBurger')" class="nav__item ">Make Your Burger</div> -->
+      <!--  -->
+      <input class="input" type="radio" id="discover" name="nav" value="nav" checked>
+      <label  for="discover" class="nav__item label label1"  @click="$router.push('/')">Discover</label>
+      <input class="input " type="radio" id="makeBurger" name="nav" value="nav" >
+      <label  for="makeBurger" class="nav__item label label2"  @click="$router.push('/makeBurger')" >Make Your Burger</label>
+      <!--  -->
   </nav>
   <div class="nav__call" >
       <p class="call__text">Call Me Back</p>
@@ -75,5 +74,55 @@ export default {
       }
     }
   }
+}
+.input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.input:checked + .label{
+  padding: 2px 0 0 0;
+}
+//animations
+@keyframes bottomBandLeft {
+  0% {
+    width: 100px;
+    transform: translateX(100%);
+  }
+
+  100% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+}
+@keyframes bottomBandRight {
+  0% {
+    width: 100px;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+}
+
+.input:checked + .label::after{
+  
+  content: "";
+  display: block;
+  left: 0;
+  height: 2px;
+  background:  $primary;
+  //
+  animation-name: bottomBandLeft;
+  animation-duration: 0.5s;
+  
+}
+.input:checked + .label1::after {
+  animation-name: bottomBandLeft;
+}
+.input:checked + .label2::after {
+  animation-name: bottomBandRight;
 }
 </style>

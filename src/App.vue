@@ -53,6 +53,6 @@ body, html {
   max-width: 1600px;
   margin: 0 auto;
   width: 100%;
-  padding: 5%;
+  padding:  0 5%;
 }
 </style>
