@@ -14,7 +14,7 @@
   </nav>
   <div class="nav__call" >
       <p class="call__text">Call Me Back</p>
-      <a class="call__number" href="#">8 800 437-87-22</a>
+      <p class="call__number">8 800 437-87-22</p>
     </div>
   <!-- <router-view/> -->
 </header>
@@ -66,6 +66,11 @@ export default {
         margin: 0 5px 0 0;
         
       }
+    }
+    .call__number {
+      
+      font-weight: 600;
+      line-height: 20px;
     }
   }
 }
