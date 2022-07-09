@@ -49,7 +49,7 @@ export default {
     
   }
   .nav__item, .call__text, .call__number {
-    margin: 0 0 0 13%;
+    margin: 0 0 0 25%;
     font-family: OpenSans Regular;
     font-size: 1rem;
   }
@@ -81,6 +81,9 @@ export default {
 }
 .input:checked + .label{
   padding: 2px 0 0 0;
+}
+.label {
+  cursor: pointer;
 }
 //animations
 @keyframes bottomBandLeft {
@@ -123,5 +126,13 @@ export default {
 }
 .input:checked + .label2::after {
   animation-name: bottomBandRight;
+}
+.label:hover {
+  // transition: 1s;
+  // font-family: 'Open Sans';
+// font-style: normal;
+// font-weight: 600;
+// font-size: 16px;
+// line-height: 20px;
 }
 </style>
