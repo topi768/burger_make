@@ -38,7 +38,7 @@ export default {
 
 
 .header {
-  margin: 3% 0 0 0;;
+  margin: 1.5% 0 0 0;;
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
@@ -49,7 +49,7 @@ export default {
     
   }
   .nav__item, .call__text, .call__number {
-    margin: 0 0 0 13%;
+    margin: 0 0 0 25%;
     font-family: OpenSans Regular;
     font-size: 1rem;
   }
