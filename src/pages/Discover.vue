@@ -18,9 +18,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/variables.scss";
+
 .flex-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .main-img {
         // flex-basis: 50%;
         width: 75%;
@@ -29,7 +32,14 @@ export default {
     }
     .title {
         display: block;
-
+        width: 1px;
+        font-family: 'OpenSans Bold';
+        font-style: normal;
+        // font-weight: 700;
+        font-size: 72px;
+        line-height: 80px;  
+        /* or 111% */
+        color: $black;
     }
 }
 </style>
