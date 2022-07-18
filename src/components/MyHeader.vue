@@ -117,9 +117,7 @@ export default {
     width: 100px;
     transform: translateX(100%);
   }
-
   100% {
-    
     width: 100%;
     transform: translateX(0px);
   }
@@ -137,7 +135,6 @@ export default {
 }
 
 .nav__item[data-checked=true]::after{
-  
   content: "";
   display: block;
   left: 0;
