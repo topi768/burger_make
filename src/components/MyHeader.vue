@@ -4,16 +4,17 @@
   <nav class="nav">
     <my-logo></my-logo>
       <!--  -->
-      <!-- <div class="nav__item" :data-isDiscoverChecked='isDiscoverChecked'>Discover</div>
-      <div class="nav__item" :data-isDiscoverChecked='isDiscoverChecked'>Discover</div> -->
+
+      <div class="nav__item nav__item1" id="nav__item1" :data-checked="isDiscoverChecked" @click="$router.push('/')">Discover</div>
+      <div class="nav__item nav__item2" id="nav__item2" :data-checked="isMakeBurgerChecked" @click="$router.push('/makeBurger')">Make Your Burger</div>
 
       <!--  -->
 
       <!--  -->
-      <input class="input" type="radio" id="discover" v-bind:checked="isDiscoverChecked" name="nav" value="nav"  >
+      <!-- <input class="input" type="radio" id="discover" v-bind:checked="isDiscoverChecked" name="nav" value="nav"  >
       <label  for="discover" class="nav__item label label1"  @click="$router.push('/')">Discover</label>
       <input class="input " type="radio" id="makeBurger"  v-bind:checked="isMakeBurgerChecked" name="nav" value="nav" >
-      <label  for="makeBurger" class="nav__item label label2"  @click="$router.push('/makeBurger')" >Make Your Burger</label>
+      <label  for="makeBurger" class="nav__item label label2"  @click="$router.push('/makeBurger')" >Make Your Burger</label> -->
       <!--  -->
   </nav>
   <div class="nav__call" >
@@ -34,7 +35,6 @@ export default {
     return {
       isDiscoverChecked: true,
       isMakeBurgerChecked: false,
-      test: 1
 
     }
   },
@@ -52,7 +52,6 @@ export default {
         if (to.path == '/') {
           this.isDiscoverChecked = true
           this.isMakeBurgerChecked = false
-          console.log('SFESF');
         }else if (to.path == '/makeBurger'){
           this.isDiscoverChecked = false
           this.isMakeBurgerChecked = true
@@ -104,12 +103,12 @@ export default {
     }
   }
 }
-.input {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-}
-.input:checked + .label{
+// .nav__item {
+//   position: absolute;
+//   // z-index: -1;
+//   // opacity: 0;
+// }
+.nav__item[data-checked=true] {
   padding: 2px 0 0 0;
 }
 //animations
@@ -137,7 +136,7 @@ export default {
   }
 }
 
-.input:checked + .label::after{
+.nav__item[data-checked=true]::after{
   
   content: "";
   display: block;
@@ -149,10 +148,10 @@ export default {
   animation-duration: 0.5s;
   
 }
-.input:checked + .label1::after {
+.nav__item1[data-checked=true]::after {
   animation-name: bottomBandLeft;
 }
-.input:checked + .label2::after {
+.nav__item2[data-checked=true]::after {
   animation-name: bottomBandRight;
 }
 </style>

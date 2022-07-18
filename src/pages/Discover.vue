@@ -84,6 +84,7 @@ export default {
     min-height: 120px;
     background: $primary;
     border: 0px;
+    cursor: pointer;
     //text
     color: $white;
     font-family: 'OpenSans Bold';
