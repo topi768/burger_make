@@ -3,12 +3,16 @@
   <header class="header" >
   <nav class="nav">
     <my-logo></my-logo>
-    <!-- <div @click="$router.push('/')" class="nav__item">Discover</div>
-    <div @click="$router.push('/makeBurger')" class="nav__item ">Make Your Burger</div> -->
       <!--  -->
-      <input class="input" type="radio" id="discover" name="nav" value="nav" checked>
+      <!-- <div class="nav__item" :data-isDiscoverChecked='isDiscoverChecked'>Discover</div>
+      <div class="nav__item" :data-isDiscoverChecked='isDiscoverChecked'>Discover</div> -->
+
+      <!--  -->
+
+      <!--  -->
+      <input class="input" type="radio" id="discover" v-bind:checked="isDiscoverChecked" name="nav" value="nav"  >
       <label  for="discover" class="nav__item label label1"  @click="$router.push('/')">Discover</label>
-      <input class="input " type="radio" id="makeBurger" name="nav" value="nav" >
+      <input class="input " type="radio" id="makeBurger"  v-bind:checked="isMakeBurgerChecked" name="nav" value="nav" >
       <label  for="makeBurger" class="nav__item label label2"  @click="$router.push('/makeBurger')" >Make Your Burger</label>
       <!--  -->
   </nav>
@@ -24,12 +28,38 @@
 </template>
 
 <script>
+// import navigation from "@/hooks/navigation"
 export default {
-  
+  data() {
+    return {
+      isDiscoverChecked: true,
+      isMakeBurgerChecked: false,
+      test: 1
+
+    }
+  },
   methods: {
 
   },
+  computed: {
     
+  },
+  created() {
+    
+  },
+  watch: {
+      $route (to, from){
+        if (to.path == '/') {
+          this.isDiscoverChecked = true
+          this.isMakeBurgerChecked = false
+          console.log('SFESF');
+        }else if (to.path == '/makeBurger'){
+          this.isDiscoverChecked = false
+          this.isMakeBurgerChecked = true
+        }
+      }
+    }
+
 }
 </script>
 
@@ -90,6 +120,7 @@ export default {
   }
 
   100% {
+    
     width: 100%;
     transform: translateX(0px);
   }

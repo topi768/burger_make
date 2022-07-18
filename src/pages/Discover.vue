@@ -4,9 +4,11 @@
         <h1 class="title">Make Your Burger</h1>
         <img class="main-img" src="@/assets/img/discover/mainImg.png" alt="">
     </div>
-    <button class="button" :style="{ width: width, height: height}" v-on:mouseenter="buttonAnimation" >
+    <button class="button" @click="$router.push('/makeBurger')" >
         <p>make burger</p>
     </button>
+      <router-view/>
+
 </div>
 
     
@@ -15,13 +17,12 @@
 <script>
 
 export default {
-    beforeCreate: function() {
-        document.body.className = 'discover';
-    },
+    // beforeCreate: function() {
+    //     document.body.className = 'discover';
+    // },
       data() {
         return {
-            width: '120px',
-            height: '120px'
+            
         };
     },
     // methods: {
@@ -34,21 +35,7 @@ export default {
 
     // },
     computed: {
-        buttonAnimation() {
-            let button = event.target
-            let startWidth =button.offsetWidth
-            let endWidth= startWidth + 60
 
-            button.style.width = button.offsetWidth
-
-            for (startWidth; startWidth < 220; startWidth++) {
-                this.width = startWidth + 'px'
-                this.height = startWidth + 'px'
-                console.log("sr");
-            }
-
-            console.log(button.getBoundingClientRect().width);
-        }
     }
 
 
@@ -105,43 +92,10 @@ export default {
     font-size: 1.5em;
     line-height: 30px;
     text-transform: uppercase;
-    // 
-    // animation-duration: 0.8s; 
-    // animation-fill-mode: both; 
-    // transform: scale(1);
-    //     @keyframes example {
-    //         // 0% {
-    //         //     // transform: scale(1);
-    //         // }
-    //     // 15% {
-    //     //     transform: scale(1.3);
-    //     // }
-    //     // 30% {
-    //     //     transform: scale(1.5);
-    //     // }
-    //     // 40% {
-    //     //     transform: scale(1.2);
-    //     // }
-    //     // 50% {
-    //     //     transform: scale(1.3);
-    //     // }
-    //     // 75% {
-    //     //     transform: scale(1.5);
+    transition: 0.3s;
 
-    //     // }
-    //     100% {
-    //         transform: scale(1.4);
-    //     }
-    // }
-    // transform: scale(1);
-
-        // transition: 0.3s;
-        // animation:  0.8s ease;
-        // animation-fill-mode: forwards;
-    &:hover {
-        
-        // transform: scale(1.5);
-        // animation-duration: 0.5s;
+    &:hover { 
+        transform: scale(1.5);
     }
 }
 </style>
