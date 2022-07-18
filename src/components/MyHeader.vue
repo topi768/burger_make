@@ -18,9 +18,9 @@
       <!--  -->
   </nav>
   <div class="nav__call" >
-      <p class="call__text">Call Me Back</p>
-      <p class="call__number">8 800 437-87-22</p>
-    </div>
+    <!-- <p class="call__text">Call Me Back</p>
+    <p class="call__number">8 800 437-87-22</p> -->
+  </div>
   <!-- <router-view/> -->
 </header>
 </div>
