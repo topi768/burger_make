@@ -3,19 +3,24 @@
   <header class="header" >
   <nav class="nav">
     <my-logo></my-logo>
-    <!-- <div @click="$router.push('/')" class="nav__item">Discover</div>
-    <div @click="$router.push('/makeBurger')" class="nav__item ">Make Your Burger</div> -->
       <!--  -->
-      <input class="input" type="radio" id="discover" name="nav" value="nav" checked>
+
+      <div class="nav__item nav__item1" id="nav__item1" :data-checked="isDiscoverChecked" @click="$router.push('/')">Discover</div>
+      <div class="nav__item nav__item2" id="nav__item2" :data-checked="isMakeBurgerChecked" @click="$router.push('/makeBurger')">Make Your Burger</div>
+
+      <!--  -->
+
+      <!--  -->
+      <!-- <input class="input" type="radio" id="discover" v-bind:checked="isDiscoverChecked" name="nav" value="nav"  >
       <label  for="discover" class="nav__item label label1"  @click="$router.push('/')">Discover</label>
-      <input class="input " type="radio" id="makeBurger" name="nav" value="nav" >
-      <label  for="makeBurger" class="nav__item label label2"  @click="$router.push('/makeBurger')" >Make Your Burger</label>
+      <input class="input " type="radio" id="makeBurger"  v-bind:checked="isMakeBurgerChecked" name="nav" value="nav" >
+      <label  for="makeBurger" class="nav__item label label2"  @click="$router.push('/makeBurger')" >Make Your Burger</label> -->
       <!--  -->
   </nav>
   <div class="nav__call" >
-      <p class="call__text">Call Me Back</p>
-      <p class="call__number">8 800 437-87-22</p>
-    </div>
+    <!-- <p class="call__text">Call Me Back</p>
+    <p class="call__number">8 800 437-87-22</p> -->
+  </div>
   <!-- <router-view/> -->
 </header>
 </div>
@@ -24,12 +29,36 @@
 </template>
 
 <script>
+// import navigation from "@/hooks/navigation"
 export default {
-  
+  data() {
+    return {
+      isDiscoverChecked: true,
+      isMakeBurgerChecked: false,
+
+    }
+  },
   methods: {
 
   },
+  computed: {
     
+  },
+  created() {
+    
+  },
+  watch: {
+      $route (to, from){
+        if (to.path == '/') {
+          this.isDiscoverChecked = true
+          this.isMakeBurgerChecked = false
+        }else if (to.path == '/makeBurger'){
+          this.isDiscoverChecked = false
+          this.isMakeBurgerChecked = true
+        }
+      }
+    }
+
 }
 </script>
 
@@ -38,7 +67,7 @@ export default {
 
 
 .header {
-  margin: 3% 0 0 0;;
+  margin: 1.5% 0 0 0;;
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
@@ -74,12 +103,12 @@ export default {
     }
   }
 }
-.input {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-}
-.input:checked + .label{
+// .nav__item {
+//   position: absolute;
+//   // z-index: -1;
+//   // opacity: 0;
+// }
+.nav__item[data-checked=true] {
   padding: 2px 0 0 0;
 }
 .label {
@@ -91,7 +120,6 @@ export default {
     width: 100px;
     transform: translateX(100%);
   }
-
   100% {
     width: 100%;
     transform: translateX(0px);
@@ -109,8 +137,7 @@ export default {
   }
 }
 
-.input:checked + .label::after{
-  
+.nav__item[data-checked=true]::after{
   content: "";
   display: block;
   left: 0;
@@ -121,10 +148,10 @@ export default {
   animation-duration: 0.5s;
   
 }
-.input:checked + .label1::after {
+.nav__item1[data-checked=true]::after {
   animation-name: bottomBandLeft;
 }
-.input:checked + .label2::after {
+.nav__item2[data-checked=true]::after {
   animation-name: bottomBandRight;
 }
 .label:hover {
