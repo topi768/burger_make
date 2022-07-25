@@ -35,7 +35,7 @@ export default {
         align-items: center;
         flex-wrap: wrap;
         // overflow: hidden;
-        @media(max-width: 992px){
+        @media(max-width: $lg){
             flex-direction: column;
         }
         .title {
@@ -47,7 +47,7 @@ export default {
             line-height: 80px;  
             color: $black;
             z-index: 1;
-            @media(max-width: 992px){
+            @media(max-width: $lg){
                 width: 100%;
                 font-size: 3rem;
                 line-height: 58px;
@@ -56,7 +56,7 @@ export default {
         .img__wrapper {
             width: 63%;
             position: relative;
-            @media(max-width: 992px) {
+            @media(max-width: $lg) {
                 width: 100%;
                 height: 100%;
             }
@@ -86,11 +86,11 @@ export default {
                 text-transform: uppercase;
                 &:hover { 
                     transform: scale(1.5);
-                    @media(max-width: 992px) {
+                    @media(max-width: $lg) {
                         transform: scale(1.5) translate(-25%, -25%);
                     }
                 }
-                @media(max-width: 992px) {
+                @media(max-width: $lg) {
                     top: 50%;
                     left: 50%;
                     margin-right: -50%;
@@ -108,11 +108,5 @@ export default {
 }
 
 
-
-
-.button {
-
-
-    }
 
 </style>
