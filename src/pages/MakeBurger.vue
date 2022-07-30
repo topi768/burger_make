@@ -12,21 +12,23 @@
                 </div>
             </div>
             <div class="choice-of-ingredients" >
+
+                <div ref="observer" class="choice-of-ingredients__edge--left"></div>
                 <div class="ingredient"  v-for="ingredient in ingredients" :key="ingredient" >
                     <img :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)">
-
                     <h3>{{ingredient.name}}</h3>
                     <div class="ingredient__quantity-selection" >
                         <button @click="ingredient.count--" class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
                         <p>{{ingredient.count}}</p> 
-
                         <button @click="ingredient.count++" class="quantity-selection__button plus">+</button>
-
                     </div>
                 </div>
+                <div  class="choice-of-ingredients__edge--right"></div>
+
             </div>
         </div>
     </div>
+
 </template>
 <script>
 export default {
@@ -51,6 +53,23 @@ export default {
   computed: {
     
   },
+  mounted(){
+    const options = {
+        // root: document.querySelector('.choice-of-ingredients'),
+        threshold: 1.0
+    }
+    const callback = (entries, observer)  => {
+        if (entries[0].isIntersecting) {
+            // document.querySelector('.choice-of-ingredients').scrollWidth = 1042
+            console.log(document.querySelector('.choice-of-ingredients'));
+            document.querySelector('.choice-of-ingredients').classList.add("slide")
+        }else {
+            document.querySelector('.choice-of-ingredients').classList.remove("slide")
+        }
+    };
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(this.$refs.observer)
+  }
 
 }
 </script>
@@ -91,14 +110,16 @@ export default {
     }
     .choice-of-ingredients{ 
         width: 100%;
-
         padding: 5px;
         display: flex;
+        position: relative;
         @media (max-width: $xl) {
             overflow-x: scroll;
+            padding-left: 100px;
+            padding-right: 100px;
+            transition: 0.4s;
 
         }
-
         //text
         font-family: "OpenSans Regular";
         font-style: normal;
@@ -137,6 +158,23 @@ export default {
                 }
             }
         }
+        .choice-of-ingredients__edge--left {
+            height: 1px;
+            width: 1px;
+            // margin: 0 100px 0 0;
+            
+        }
+        .choice-of-ingredients__edge--right {
+            height: 1px;
+            width: 1px;
+            // margin: 0 0 0 100px;
+        }
+
+    }
+    .slide{
+        // transform: translateX(-100px ) ;
+        // margin: 0;
+        // padding-left: 0;
     }
 }
 </style>
