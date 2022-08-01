@@ -161,6 +161,8 @@ body {
         display: block;
         background: $primary;
         height: 2px;
+        transition: 0.4s;
+
       }
 
       .burger__span {
@@ -168,24 +170,36 @@ body {
         &::after {
           content: "";
           width: 12px;
-          top: 6px;
-          left: 1px;
+          transform: translate(0, 6px);
         }
         &::before {
           content: "";
           width: 12px;
-          top: -6px;
-          right: 1px;
+          transform: translate(0, -6px);
         }
       }
-
     }
-    .active ~ .burger__menu {
+    //burger animation
+     .active {
+        .burger__span::after {
+          width: 16px;
+          transform: translate(0,0) rotate(-45deg);
+
+        }
+        .burger__span::before{
+          width: 16px;
+          transform: translate(0, 0) rotate(45deg);
+        }
+        .burger__span {
+          background: rgba(0, 0, 0, 0);
+        }
+      }
+    //end burger animation
+    .active + .burger__menu {
           position: absolute;
           transform: translateX( -100% ) translateY(100%) ;
           overflow-y: hidden;
 
-      
     }
     .burger__menu {
       position: absolute;
@@ -214,8 +228,10 @@ body {
     }
   }
 }
+//
 
-//animations
+
+//animations nav
 
 .nav__item[data-checked=true] {
   padding: 2px 0 0 0 ;
