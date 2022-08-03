@@ -5,6 +5,7 @@
                 <h1 class="title">Make Your Burger</h1>
                 <div class="made-burger">
                     <div class="made-burger__ingredients">
+                        <burger-composition :burgerComposition='burgerComposition'></burger-composition>
                     </div>
                 </div>
                 <div class="price-tag">
@@ -18,9 +19,9 @@
                     <img :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)">
                     <h3>{{ingredient.name}}</h3>
                     <div class="ingredient__quantity-selection" >
-                        <button @click="ingredient.count--" class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
+                        <button @click="ingredient.count--;burgerComposition.splice(burgerComposition.findIndex(n => n.name == ingredient.name),1 )" class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
                         <p>{{ingredient.count}}</p> 
-                        <button @click="ingredient.count++" class="quantity-selection__button plus">+</button>
+                        <button @click="ingredient.count++;burgerComposition.push(ingredient)" class="quantity-selection__button plus">+</button>
                     </div>
                 </div>
                 <div  class="choice-of-ingredients__edge--right"></div>
@@ -31,11 +32,16 @@
 
 </template>
 <script>
+import BurgerComposition from "@/components/BurgerComposition";
 export default {
+    components: {
+        BurgerComposition
+    },
   data() {
     return {
         // countIngredients: 8,
         ingredients:[
+
             {name:'cutlet', count:0, price: 2, kcal: 249, time: 4, oz: 0.2},
             {name:'mayo', count:0, price: 2, kcal: 249, time: 4, oz: 0.2},
             {name:'onion', count:0, price: 2, kcal: 249, time: 4, oz: 0.2},
@@ -44,14 +50,17 @@ export default {
             {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2},
             {name:'salad', count:0, price: 2, kcal: 249, time: 4, oz: 0.2},
             {name:'bun', count:0, price: 2, kcal: 249, time: 4, oz: 0.2},
-        ]
+        ],
+        burgerComposition: []
+        
+
     }
   },
   methods: {
 
   },
   computed: {
-    
+
   },
   mounted(){
       //slide scroll
@@ -178,8 +187,6 @@ export default {
             width: 1px;
             margin: 50px 5px 0 50px;
         }
-
     }
-
 }
 </style>
