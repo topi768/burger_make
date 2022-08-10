@@ -3,7 +3,7 @@
         <div class="content" >
             <div class="flex-container" >
                 <h1 class="title">Make Your Burger</h1>
-                    <!-- <burger-composition :burgerComposition='burgerComposition'></burger-composition> -->
+                    <burger-composition :burgerCompositionWithLayot='burgerCompositionWithLayot'></burger-composition>
                 <div class="price-tag">
 
                 </div>
@@ -38,14 +38,14 @@ export default {
         // countIngredients: 8,
         ingredients:[
 
-            {name:'cutlet', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1},
-            {name:'mayo', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -55, maxInLayer: 1},
-            {name:'onion', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 3},
-            {name:'tomato', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1},
-            {name:'cucumber', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 3},
-            {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1},
-            {name:'salad', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -55, maxInLayer: 1},
-            {name:'bun', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -15, maxInLayer: 1},
+            {name:'cutlet', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, multiplePerLayer: false, maxInLayer: 1},
+            {name:'mayo', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -65, multiplePerLayer: false, maxInLayer: 1},
+            {name:'onion', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -30, multiplePerLayer: true, maxInLayer: 3},
+            {name:'tomato', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -35, multiplePerLayer: true, maxInLayer: 2},
+            {name:'cucumber', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, multiplePerLayer: true, maxInLayer: 3},
+            {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, multiplePerLayer: false, maxInLayer: 1},
+            {name:'salad', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -55, multiplePerLayer: false, maxInLayer: 1},
+            {name:'bun', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -15, multiplePerLayer: false, maxInLayer: 1},
         ],
         burgerComposition: [],
         burgerCompositionWithLayot: [],
@@ -91,14 +91,15 @@ export default {
         burgerComposition: {
             handler(oldValue, newValue) {
             this.burgerCompositionWithLayot = []
+
                 for (let i = 0; i < this.burgerComposition.length ;) {
                     
 
-                    if (this.burgerComposition[i+2] != undefined && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].name == this.burgerComposition[i+2].name)  {
-                        this.newLayer = this.burgerComposition.slice(i, i+3, ); // почему  +3??77
+                    if (this.burgerComposition[i+2] != undefined && this.burgerComposition[i].multiplePerLayer  && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].name == this.burgerComposition[i+2].name  && this.burgerComposition[i].maxInLayer == 3)  {
+                        this.newLayer = this.burgerComposition.slice(i, i+3, );
                         this.burgerCompositionWithLayot.push(this.newLayer);
                         i+= 3
-                    }else if (this.burgerComposition[i+1] != undefined && this.burgerComposition[i].name == this.burgerComposition[i+1].name){
+                    }else if (this.burgerComposition[i+1] != undefined && this.burgerComposition[i].multiplePerLayer  && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].maxInLayer == 2){
                         this.newLayer = this.burgerComposition.slice(i, i+2, );
                         this.burgerCompositionWithLayot.push( this.newLayer);
                         i += 2 
@@ -109,10 +110,7 @@ export default {
                     }
 
                 }
-                // let burgerCompositionWithLayot = this.burgerComposition.map(ingredient => {
-                //     return ingredient
-                // })
-                console.log(this.burgerCompositionWithLayot);
+
 
             },
             deep: true

@@ -2,23 +2,25 @@
     <div class="burger-composition" >
         <div 
         class="burger-composition__layer"
-        v-for="ingredient in burgerComposition" 
-        :key="ingredient.name"
-        :style="'z-index:'+  burgerComposition.length + '; margin: ' + ingredient.negativeMargin + 'px 0; '" 
+        v-for="(layer, index) in burgerCompositionWithLayot"
+        :key="index"
+        :style="'z-index:' + index + ';margin: ' + layer[0].negativeMargin + 'px 0' + ';background: url(@/assets/img/makeBurger/ingredients/' + layer[0].name + layer.length + '.png);'"
+        :data-count-in-layer="layer.length"
+        >
+        <div
+            v-for="(ingredient, i) in layer"
+            :key="i"
+            class="burger-composition__item"
+            :class="{multiplePerLayer: ingredient.multiplePerLayer}"
+            :style="'width:' + 100 / layer.length + '%'"
         >
             <img
                 :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)"
-                :class="[ burgerComposition[burgerComposition.length-2] != undefined  && burgerComposition[burgerComposition.length-1].name == burgerComposition[burgerComposition.length-2].name && ingredient.maxInLayer != 1? 'twoInLayer' : ''  ]"
+                
+
             >
+        </div>
 
-            <!-- <p
-                v-if="burgerComposition[burgerComposition.length-2] != undefined  && burgerComposition[burgerComposition.length-1].name == burgerComposition[burgerComposition.length-2].name  "
-
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi dolore atque vero soluta magni et exercitationem possimus, impedit deleniti, nam fugit maxime voluptas suscipit iste consectetur similique vel? Ducimus, nam!</p> -->
-
-            <!-- <img
-                :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)"
-            > -->
         </div>
 
 
@@ -29,7 +31,7 @@
 <script>
 export default {
     props: {
-        burgerComposition: {
+        burgerCompositionWithLayot: {
             type: Array,
             required :true
         }
@@ -56,16 +58,29 @@ export default {
     min-height: 400px;
     &__layer {
         max-width: 270px;
-        max-height: 128px;
-        // position: absolute;
-        // transform: translateY(-1%);
-        // margin: -50px 0;
-        .twoInLayer{
-            width: 135px;
+        // max-height: 128px;
+        display: flex;
+        // grid-template-rows: 1fr;
+        // justify-content: center;
+        .burger-composition__item {
+            width: 100%;
+            max-height: 120px;
+            img {
+                overflow: hidden;
+                // height: 128px;
+                width: 100%;
+
+                // flex-shrink: 1;
+                // flex-grow:1;
+                // width: 120px;
+                // flex-basis: content;
+                // flex-shrink:0;
+                // width: fit-content;
+                // flex-grow: 0;
+            }
         }
+
     }
-    // &__item[data-count-in-layer="3"] {
-    //     width: 20%;
-    // }
+
 }
 </style>
