@@ -82,7 +82,16 @@ export default {
 body {
   position: relative;
 }
+.container {
+  // position: absolute;
+  // width: 100%;
+  // top: 0;
+  // left: 0;
+}
+
+
 .header {
+
   margin: 1.5% 0 0 0;
   display: flex;
   justify-content: space-between;

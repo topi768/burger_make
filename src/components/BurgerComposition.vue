@@ -1,27 +1,20 @@
 <template>
     <div class="burger-composition" >
-        <div 
-        class="burger-composition__layer"
-        v-for="(layer, index) in burgerCompositionWithLayot"
-        :key="index"
-        :style="'z-index:' + index + ';margin: ' + layer[0].negativeMargin + 'px 0' + ';background: url(@/assets/img/makeBurger/ingredients/' + layer[0].name + layer.length + '.png);'"
-        :data-count-in-layer="layer.length"
-        >
-        <div
-            v-for="(ingredient, i) in layer"
-            :key="i"
-            class="burger-composition__item"
-            :class="{multiplePerLayer: ingredient.multiplePerLayer}"
-            :style="'width:' + 100 / layer.length + '%'"
-        >
-            <img
-                :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)"
-                
+        <transition-group name="ingredient-list"  >
+            <div 
+                class="burger-composition__layer"
+                v-for="(layer, index) in burgerCompositionWithLayot"
+                :key="layer[0]"
+                :style="{'margin-bottom': layer[0].negativeMargin + 'px', 'z-index': index}"
 
             >
-        </div>
+                <img
+                    :src="[layer.length == 1 ? require(`@/assets/img/makeBurger/ingredients/${layer[0].name}.png`):  require('@/assets/img/makeBurger/ingredients/' + layer[0].name + layer.length +'.png')]"
+                    :class="layer[0].name"
+                >
 
-        </div>
+            </div>
+        </transition-group>
 
 
 
@@ -38,14 +31,29 @@ export default {
     },
   data() {
     return {
-
-
     }
   },
+
 }
 </script>
 
 <style lang="scss" scoped>
+//ingredient-list animation
+.ingredient-list-move, 
+.ingredient-list-enter-active,
+.ingredient-list-leave-active {
+  transition: all 0.3s ease;
+}
+
+.ingredient-list-enter-from,
+.ingredient-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+
+
+//
 .burger-composition {
     display: flex;
     align-items: center;
@@ -55,31 +63,22 @@ export default {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    min-height: 400px;
+    min-height: 600px;
     &__layer {
-        max-width: 270px;
-        // max-height: 128px;
+        max-width: 440px;
+        width: 100%;
+        height: 128px;
+        // max-height: 190px;
         display: flex;
-        // grid-template-rows: 1fr;
-        // justify-content: center;
-        .burger-composition__item {
-            width: 100%;
-            max-height: 120px;
-            img {
-                overflow: hidden;
-                // height: 128px;
-                width: 100%;
+        // align-items: center;
+        justify-content: center;
 
-                // flex-shrink: 1;
-                // flex-grow:1;
-                // width: 120px;
-                // flex-basis: content;
-                // flex-shrink:0;
-                // width: fit-content;
-                // flex-grow: 0;
-            }
+        img {
+            max-width: 100%;
+            width: 80%;  
+            // height: 100%;
+            // position: absolute;
         }
-
     }
 
 }

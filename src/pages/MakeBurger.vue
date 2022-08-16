@@ -15,9 +15,9 @@
                     <img :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)">
                     <h3>{{ingredient.name}}</h3>
                     <div class="ingredient__quantity-selection" >
-                        <button @click="ingredient.count--;burgerComposition.splice(burgerComposition.findIndex(n => n.name == ingredient.name),1 )" class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
+                        <button @click="ingredient.count--;burgerComposition.splice(burgerComposition.findIndex(n => n.name == ingredient.name),1 ); " class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
                         <p>{{ingredient.count}}</p> 
-                        <button @click="ingredient.count++;burgerComposition.push(ingredient)" class="quantity-selection__button plus">+</button>
+                        <button @click="ingredient.count++;ingredient.id = Date.now();burgerComposition.splice(-1, 0, ingredient);addIngredient" class="quantity-selection__button plus">+</button>
                     </div>
                 </div>
                 <div  class="choice-of-ingredients__edge--right"></div>
@@ -38,19 +38,26 @@ export default {
         // countIngredients: 8,
         ingredients:[
 
-            {name:'cutlet', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, multiplePerLayer: false, maxInLayer: 1},
-            {name:'mayo', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -65, multiplePerLayer: false, maxInLayer: 1},
-            {name:'onion', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -30, multiplePerLayer: true, maxInLayer: 3},
-            {name:'tomato', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -35, multiplePerLayer: true, maxInLayer: 2},
-            {name:'cucumber', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, multiplePerLayer: true, maxInLayer: 3},
-            {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, multiplePerLayer: false, maxInLayer: 1},
-            {name:'salad', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -55, multiplePerLayer: false, maxInLayer: 1},
-            {name:'bun', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -15, multiplePerLayer: false, maxInLayer: 1},
+            {name:'cutlet', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -100, maxInLayer: 1, id:'cutlet' },
+            {name:'mayo', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 1, id: 'mayo'},
+            {name:'onion', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 3, id: 'onion'},
+            {name:'tomato', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -110, maxInLayer: 2, id: 'tomato'},
+            {name:'cucumber', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -110, maxInLayer: 3, id: 'cucumber'},
+            {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 1, id:'cheese' },
+            {name:'salad', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 1, id: 'salad'},
+            {name:'bun', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -95, maxInLayer: 1, id: 'bun'},
         ],
-        burgerComposition: [],
+        burgerComposition: [
+            {name:'bun_bottom', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1,id: 'bun_bottom'},
+            {name:'bun_top', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -75, maxInLayer: 1, id: 'bun_top'},
+
+        ],
         burgerCompositionWithLayot: [],
+
         newLayer: [],
         repeat: 0,
+        // bun_top: {},
+        bun_bottom: {},
 
     }
   },
@@ -87,19 +94,69 @@ export default {
     methods: {
 
     },
+
+
+    computed: {
+        addIngredient() {
+
+        }
+
+    },
     watch: {
         burgerComposition: {
-            handler(oldValue, newValue) {
-            this.burgerCompositionWithLayot = []
+            handler(oldBurgerComposition, newBurgerComposition) {
+                // console.log();
+                // if (this.burgerComposition[this.burgerComposition.length-3] != undefined && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 3  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-3].name && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name )  {
+                //     this.newLayer = this.burgerComposition.slice(-3 );
+                //     this.burgerCompositionWithLayot.push(this.newLayer);
 
+                // }else if (this.burgerComposition[this.burgerComposition.length-2] != undefined && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 2  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name ) {
+                //     this.newLayer = this.burgerComposition.slice(-2 );
+                //     this.burgerCompositionWithLayot.push(this.newLayer);
+                // }else  {
+                //     this.newLayer = this.burgerComposition.slice(-1 );
+                //     this.burgerCompositionWithLayot.push(this.newLayer);
+
+                // }
+                ////////////
+                // if (this.burgerComposition.length >= 3 && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 3  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-3].name && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name )  {
+                //     this.burgerComposition.at(-3).howManyInRowL = 3
+                    
+                //     // this.newLayer = this.burgerComposition.slice(-3 );
+                //     this.burgerCompositionWithLayot.push(this.burgerComposition.at(-3));
+
+                // }else if (this.burgerComposition[this.burgerComposition.length-2]  >= 2 && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 2  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name ) {
+                //     this.burgerComposition.at(-2).howManyInRowL = 2
+
+                //     // this.newLayer = this.burgerComposition.slice(-2 );
+                //     this.burgerCompositionWithLayot.push(this.burgerComposition.at(-2));
+                // }else  {
+                //     this.burgerComposition.at(-1).howManyInRowL = 1
+                //     console.log( this.burgerComposition.at(-1));
+                //     // this.newLayer = this.burgerComposition.slice(-1 );
+                //     this.burgerCompositionWithLayot.push(this.burgerComposition.at(-1));
+
+                // }
+
+
+                ////////////
+
+
+
+                // let bun_topIndex = this.burgerComposition.findIndex(ingredient => ingredient.name == 'bun_top')
+                // this.bun_top = this.burgerComposition.splice(bun_topIndex, 1)
+
+                // this.burgerComposition.push(this.bun_top[0])
+
+            this.burgerCompositionWithLayot = []
                 for (let i = 0; i < this.burgerComposition.length ;) {
                     
 
-                    if (this.burgerComposition[i+2] != undefined && this.burgerComposition[i].multiplePerLayer  && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].name == this.burgerComposition[i+2].name  && this.burgerComposition[i].maxInLayer == 3)  {
+                    if (this.burgerComposition[i+2] != undefined && this.burgerComposition[i].maxInLayer >= 3  && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].name == this.burgerComposition[i+2].name )  {
                         this.newLayer = this.burgerComposition.slice(i, i+3, );
                         this.burgerCompositionWithLayot.push(this.newLayer);
                         i+= 3
-                    }else if (this.burgerComposition[i+1] != undefined && this.burgerComposition[i].multiplePerLayer  && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].maxInLayer == 2){
+                    }else if (this.burgerComposition[i+1] != undefined && this.burgerComposition[i].maxInLayer >= 2  && this.burgerComposition[i].name == this.burgerComposition[i+1].name){
                         this.newLayer = this.burgerComposition.slice(i, i+2, );
                         this.burgerCompositionWithLayot.push( this.newLayer);
                         i += 2 
@@ -108,17 +165,13 @@ export default {
                         this.burgerCompositionWithLayot.push(this.newLayer);
                         i += 1
                     }
-
                 }
 
 
             },
             deep: true
         }
-
     }
-
-
 }
 </script>
 
@@ -126,7 +179,11 @@ export default {
 @import "@/assets/variables.scss";
 
 .content {
+        // position: absolute;
+        // top: 0;
+        // left: 0;
     .flex-container {
+
         width: 100%;
         height: 100%;
         display: flex;
