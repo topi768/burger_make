@@ -43,7 +43,7 @@ export default {
             {name:'onion', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 3, id: 'onion'},
             {name:'tomato', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -110, maxInLayer: 2, id: 'tomato'},
             {name:'cucumber', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -110, maxInLayer: 3, id: 'cucumber'},
-            {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 1, id:'cheese' },
+            {name:'cheese', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -125, maxInLayer: 1, id:'cheese' },
             {name:'salad', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -120, maxInLayer: 1, id: 'salad'},
             {name:'bun', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -95, maxInLayer: 1, id: 'bun'},
         ],
@@ -105,48 +105,6 @@ export default {
     watch: {
         burgerComposition: {
             handler(oldBurgerComposition, newBurgerComposition) {
-                // console.log();
-                // if (this.burgerComposition[this.burgerComposition.length-3] != undefined && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 3  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-3].name && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name )  {
-                //     this.newLayer = this.burgerComposition.slice(-3 );
-                //     this.burgerCompositionWithLayot.push(this.newLayer);
-
-                // }else if (this.burgerComposition[this.burgerComposition.length-2] != undefined && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 2  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name ) {
-                //     this.newLayer = this.burgerComposition.slice(-2 );
-                //     this.burgerCompositionWithLayot.push(this.newLayer);
-                // }else  {
-                //     this.newLayer = this.burgerComposition.slice(-1 );
-                //     this.burgerCompositionWithLayot.push(this.newLayer);
-
-                // }
-                ////////////
-                // if (this.burgerComposition.length >= 3 && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 3  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-3].name && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name )  {
-                //     this.burgerComposition.at(-3).howManyInRowL = 3
-                    
-                //     // this.newLayer = this.burgerComposition.slice(-3 );
-                //     this.burgerCompositionWithLayot.push(this.burgerComposition.at(-3));
-
-                // }else if (this.burgerComposition[this.burgerComposition.length-2]  >= 2 && this.burgerComposition[this.burgerComposition.length-1].maxInLayer >= 2  && this.burgerComposition[this.burgerComposition.length-1].name == this.burgerComposition[this.burgerComposition.length-2].name ) {
-                //     this.burgerComposition.at(-2).howManyInRowL = 2
-
-                //     // this.newLayer = this.burgerComposition.slice(-2 );
-                //     this.burgerCompositionWithLayot.push(this.burgerComposition.at(-2));
-                // }else  {
-                //     this.burgerComposition.at(-1).howManyInRowL = 1
-                //     console.log( this.burgerComposition.at(-1));
-                //     // this.newLayer = this.burgerComposition.slice(-1 );
-                //     this.burgerCompositionWithLayot.push(this.burgerComposition.at(-1));
-
-                // }
-
-
-                ////////////
-
-
-
-                // let bun_topIndex = this.burgerComposition.findIndex(ingredient => ingredient.name == 'bun_top')
-                // this.bun_top = this.burgerComposition.splice(bun_topIndex, 1)
-
-                // this.burgerComposition.push(this.bun_top[0])
 
             this.burgerCompositionWithLayot = []
                 for (let i = 0; i < this.burgerComposition.length ;) {
@@ -180,7 +138,7 @@ export default {
 
 .content {
         // position: absolute;
-        // top: 0;
+        // top: 10%;
         // left: 0;
     .flex-container {
 
@@ -190,6 +148,7 @@ export default {
         align-items: center;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        max-height: 600px;
         .title {
             width: min-content;
             font-family: 'OpenSans Regular';
