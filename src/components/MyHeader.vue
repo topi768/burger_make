@@ -97,7 +97,7 @@ body {
   align-items: center;
   white-space: nowrap;
   user-select:none;
-  font-family: OpenSans Regular;
+  font-family: 'OpenSans Regular';
   font-size: 1rem;
   .nav__item {
     margin: 0 0 0 25%;

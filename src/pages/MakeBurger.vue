@@ -3,10 +3,8 @@
         <div class="content" >
             <div class="flex-container" >
                 <h1 class="title">Make Your Burger</h1>
-                    <burger-composition :burgerCompositionWithLayot='burgerCompositionWithLayot'></burger-composition>
-                <div class="price-tag">
-
-                </div>
+                <burger-composition :burgerCompositionWithLayot='burgerCompositionWithLayot'></burger-composition>
+                <price-tag></price-tag>
             </div>
             <div class="choice-of-ingredients" >
 
@@ -29,9 +27,11 @@
 </template>
 <script>
 import BurgerComposition from "@/components/BurgerComposition";
+import PriceTag from "@/components/PriceTag";
+
 export default {
     components: {
-        BurgerComposition
+        BurgerComposition, PriceTag
     },
   data() {
     return {
@@ -137,6 +137,7 @@ export default {
 @import "@/assets/variables.scss";
 
 .content {
+    height: 100%;
         // position: absolute;
         // top: 10%;
         // left: 0;
@@ -148,12 +149,13 @@ export default {
         align-items: center;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        max-height: 600px;
+        // max-height: 600px;
+
         .title {
             width: min-content;
             font-family: 'OpenSans Regular';
             font-style: normal;
-            font-size: 4.5rem;
+            font-size: 4.5em;
             line-height: 80px;  
             color: $black;
             z-index: 1;
@@ -161,16 +163,19 @@ export default {
         }
 
         .price-tag {
-            width: 26.23%;
-            height: 100px;
-            background: red;
+
+            @media (max-width: $xl) {
+                width: 100%;
+                flex-basis: 100%;
+                text-align: center;
+            }
         }
     }
     .choice-of-ingredients{ 
         width: 100%;
         padding: 5px;
         display: flex;
-        position: relative;
+        // position: relative;
         @media (max-width: $xl) {
             overflow-x: scroll;
             scroll-behavior: smooth;
@@ -179,7 +184,7 @@ export default {
         font-family: "OpenSans Regular";
         font-style: normal;
         font-weight: 600;
-        font-size: 0.875rem;
+        font-size: 0.875em;
         line-height: 20px;
         text-align: center;
         text-transform: capitalize;
@@ -204,7 +209,7 @@ export default {
                     border-radius: 50%;
                     background: $titanWhite;
                     border: 0px;
-                    font-size: 1.3rem;
+                    font-size: 1.3em;
                 }
                 .minus {
                     padding: 0 0 2px 0;
