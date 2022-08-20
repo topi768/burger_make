@@ -13,9 +13,9 @@
                     <img :src="require(`@/assets/img/makeBurger/ingredients/${ingredient.name}.png`)">
                     <h3>{{ingredient.name}}</h3>
                     <div class="ingredient__quantity-selection" >
-                        <button @click="ingredient.count--;burgerComposition.splice(burgerComposition.findIndex(n => n.name == ingredient.name),1 ); " class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
+                        <button @click="ingredient.count--;$store.commit('decrementBurgerComposition', ingredient); $store.getters.burgerCompositionWithLayot " class="quantity-selection__button minus" :disabled="ingredient.count <= 0" >-</button>  
                         <p>{{ingredient.count}}</p> 
-                        <button @click="ingredient.count++;ingredient.id = Date.now();burgerComposition.splice(-1, 0, ingredient);addIngredient" class="quantity-selection__button plus">+</button>
+                        <button @click="ingredient.count++;$store.commit('incrementBurgerComposition', ingredient); $store.getters.burgerCompositionWithLayot " class="quantity-selection__button plus">+</button>
                     </div>
                 </div>
                 <div  class="choice-of-ingredients__edge--right"></div>
@@ -55,9 +55,6 @@ export default {
         burgerCompositionWithLayot: [],
 
         newLayer: [],
-        repeat: 0,
-        // bun_top: {},
-        bun_bottom: {},
 
     }
   },
@@ -97,39 +94,14 @@ export default {
 
 
     computed: {
-        addIngredient() {
-
-        }
 
     },
-    watch: {
-        burgerComposition: {
-            handler(oldBurgerComposition, newBurgerComposition) {
+    // watch: {
+    //     burgerComposition: {
 
-            this.burgerCompositionWithLayot = []
-                for (let i = 0; i < this.burgerComposition.length ;) {
-                    
-
-                    if (this.burgerComposition[i+2] != undefined && this.burgerComposition[i].maxInLayer >= 3  && this.burgerComposition[i].name == this.burgerComposition[i+1].name && this.burgerComposition[i].name == this.burgerComposition[i+2].name )  {
-                        this.newLayer = this.burgerComposition.slice(i, i+3, );
-                        this.burgerCompositionWithLayot.push(this.newLayer);
-                        i+= 3
-                    }else if (this.burgerComposition[i+1] != undefined && this.burgerComposition[i].maxInLayer >= 2  && this.burgerComposition[i].name == this.burgerComposition[i+1].name){
-                        this.newLayer = this.burgerComposition.slice(i, i+2, );
-                        this.burgerCompositionWithLayot.push( this.newLayer);
-                        i += 2 
-                    }else {
-                        this.newLayer = this.burgerComposition.slice(i ,i+1 );
-                        this.burgerCompositionWithLayot.push(this.newLayer);
-                        i += 1
-                    }
-                }
-
-
-            },
-            deep: true
-        }
-    }
+    //         deep: true
+    //     }
+    // }
 }
 </script>
 

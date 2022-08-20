@@ -6,7 +6,7 @@
             <transition-group name="ingredient-list"  >
                 <div 
                     class="burger-composition__layer"
-                    v-for="(layer, index) in burgerCompositionWithLayot"
+                    v-for="(layer, index) in $store.state.burgerCompositionWithLayot"
                     :key="layer[0]"
                     :style="{'margin-bottom': layer[0].negativeMargin + 'px', 'z-index': index}"
                     
