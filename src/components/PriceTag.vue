@@ -1,13 +1,13 @@
 <template>
     <div class="price-tag" >
         <h2 class="price-tag__title">Summary</h2>
-        <p class="price-tag__price" >$73.99</p>
+        <p class="price-tag__price" >${{$store.getters.totalPrice}}</p>
         <button class="price-tag__button">Checkout</button>
-        <p class="price-tag__gift" >Build a <em>$10</em> Burger and Get a Gift</p>
+        <p class="price-tag__gift" v-show="!$store.state.giftShow" >Build a <em>$10</em> Burger and Get a Gift</p>
         <div class="info" >
-            <div class="info__item" >7 min</div>
-            <div class="info__item" >8 oz</div>
-            <div class="info__item" >9 kcal</div>
+            <div class="info__item" >{{$store.getters.totalTime}} min</div>
+            <div class="info__item" >{{$store.getters.totalOz}} oz</div>
+            <div class="info__item" >{{$store.getters.totalKcal}} kcal</div>
 
         </div>
     </div>
@@ -17,7 +17,10 @@
 
 <script>
 export default {
-    
+    data(){
+        return {
+        }
+    }
 }
 </script>
 
