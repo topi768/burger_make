@@ -1,9 +1,15 @@
 <template>
     <div class="price-tag" >
         <h2 class="price-tag__title">Summary</h2>
-        <p class="price-tag__price" >${{$store.getters.totalPrice}}</p>
-        <button class="price-tag__button">Checkout</button>
-        <p class="price-tag__gift" v-show="!$store.state.giftShow" >Build a <em>$10</em> Burger and Get a Gift</p>
+        <div class="price-tag__price" >
+            <p class="price-tag__value" >${{$store.getters.totalPrice}}</p>
+            <button class="price-tag__button">Checkout</button>
+        </div>
+
+        <transition name="gift-fade" >
+            <p class="price-tag__gift" v-show="!$store.getters.giftShow" >Build a <em>$10</em> Burger and Get a Gift</p>
+        </transition>
+        
         <div class="info" >
             <div class="info__item" >{{$store.getters.totalTime}} min</div>
             <div class="info__item" >{{$store.getters.totalOz}} oz</div>
@@ -26,13 +32,27 @@ export default {
 
 <style lang="scss" scoped >
 @import "@/assets/variables.scss";
+//
+.gift-fade-enter-active,
+.gift-fade-leave-active {
+  transition: all 0.5s ease;
+}
 
-.price-tag {
+.gift-fade-enter-from,
+.gift-fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+//   max-height: 0;
+}
+//
+.price-tag {  
+        position: relative;
         font-family: 'OpenSans Regular';
         font-style: normal;
         font-weight: 600;
         width: 26.23%;
         max-width: 405px;
+        min-height: 280px;
         // max-height: 275px;
 
     &__title {
@@ -42,22 +62,34 @@ export default {
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
     &__price {
-        font-weight: 800;
-        font-size: 2.25em;
-        color: $primary;
-    }
-    &__button {
-        padding: 16px 59px;
-        border-radius: 99px;
-        border: none;
-        background: $primary;
-        cursor: pointer;
-        //text
-        font-size: 1em;
-        line-height: 20px;
-        color: $titanWhite;
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+        max-height: 52px;
+
+        .price-tag__value {
+            margin: 0;
+            display: block;
+            font-weight: 800;
+            font-size: 2.25em;
+            color: $primary;
+        }
+        .price-tag__button {
+
+            padding: 16px 59px;
+            border-radius: 99px;
+            border: none;
+            background: $primary;
+            cursor: pointer;
+            //text
+            font-size: 1em;
+            line-height: 20px;
+            color: $titanWhite;
+        }
     }
     &__gift {
+
+        max-height: 20px;
         font-weight: 400;
         font-size: 0.875em;
         line-height: 20px;
@@ -68,15 +100,17 @@ export default {
         }
     }
     .info {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 5%;
-
-    /* primary/titan white */
-
-    background: $titanWhite;
-    border-radius: 32px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding:  4% 3%;
+        // margin: 5% 0 0 0;
+        background: $titanWhite;
+        border-radius: 32px;
+    
         .info__item {
             font-size: 0.875em;
             line-height: 20px;

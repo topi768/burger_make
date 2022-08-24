@@ -3,12 +3,10 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {//исходные  значение
     burgerComposition: [
-        {name:'bun_bottom', count:0, price: 0, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1,id: 'bun_bottom'},
-        {name:'bun_top', count:0, price: 0, kcal: 249, time: 4, oz: 0.2, negativeMargin: -75, maxInLayer: 1, id: 'bun_top'},
+        {name:'bun_bottom', count:0, price: 1, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1,id: 'bun_bottom'},
+        {name:'bun_top', count:0, price: 1, kcal: 249, time: 4, oz: 0.2, negativeMargin: -75, maxInLayer: 1, id: 'bun_top'},
     ],
-    burgerCompositionWithLayot: [
-      
-    ],
+    burgerCompositionWithLayot: [],
     totalPrice:0,
     totalTime: 0,
     totalOz: 0,
@@ -80,8 +78,7 @@ export default createStore({
     },
     decrementBurgerComposition(state, ingredient) {
       state.burgerComposition.splice(state.burgerComposition.findIndex(n => n.name == ingredient.name),1 )
-    },
-
+    }
   },
   actions: {//функции с мутациями
     
