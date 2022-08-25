@@ -137,13 +137,15 @@ export default {
         .price-tag {
 
             @media (max-width: $xl) {
+                margin: 12% 0 0 0;
                 width: 100%;
                 flex-basis: 100%;
                 text-align: center;
             }
         }
     }
-    .choice-of-ingredients{ 
+    .choice-of-ingredients{
+        margin: 5% 0 0 0;
         width: 100%;
         padding: 5px;
         display: flex;

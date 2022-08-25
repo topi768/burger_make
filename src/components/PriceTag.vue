@@ -6,7 +6,7 @@
             <button class="price-tag__button">Checkout</button>
         </div>
 
-        <transition name="gift-fade" >
+        <transition name="gift-fade-text" >
             <p class="price-tag__gift" v-show="!$store.getters.giftShow" >Build a <em>$10</em> Burger and Get a Gift</p>
         </transition>
         
@@ -33,13 +33,13 @@ export default {
 <style lang="scss" scoped >
 @import "@/assets/variables.scss";
 //
-.gift-fade-enter-active,
-.gift-fade-leave-active {
+.gift-fade-text-enter-active,
+.gift-fade-text-leave-active {
   transition: all 0.5s ease;
 }
 
-.gift-fade-enter-from,
-.gift-fade-leave-to {
+.gift-fade-text-enter-from,
+.gift-fade-text-leave-to {
   opacity: 0;
   transform: translateX(30px);
 //   max-height: 0;

@@ -16,6 +16,12 @@
                         :class="layer[0].name"
                     >
                 </div>
+                <transition @before-leave="beforeLeave" name="ketchup-fade" >
+                    <div v-show="$store.getters.giftShow"  class="ketchup" >
+                        <img src="@/assets/img/makeBurger/ketchup.png"  alt="">
+                        <p><span>+ Tomato Ketchup</span> 1.2 oz  </p>
+                    </div>
+                </transition>
             </transition-group>
         </div>
     </div>
@@ -58,11 +64,22 @@ export default {
                 }
             },
         }
+    },
+    methods: {
+        beforeLeave(el) {
+            const {marginLeft, marginTop, width, height} = window.getComputedStyle(el)
+            el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`
+            el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
+            el.style.width = width
+            el.style.height = height
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/variables.scss";
+
 //ingredient-list animation
 .ingredient-list-move, 
 .ingredient-list-enter-active,
@@ -76,8 +93,20 @@ export default {
   opacity: 0;
   transform: translateX(30px);
 }
+//ketchup animation
 
+.ketchup-fade-enter-active,
+.ketchup-fade-leave-active {
+  transition: all 0.4s ease;
 
+}
+
+.ketchup-fade-enter-from,
+.ketchup-fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+  
+}
 
 //
 .wrapper {
@@ -119,6 +148,33 @@ export default {
             // position: absolute;
         }
     }
-
+    .ketchup {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: -8%;
+        right: -30%;
+        z-index: 100;
+        @media (max-width: $lg) {
+            flex-direction: column;
+            right: -10%;
+            bottom: -13%;
+        }
+        img {
+            max-width: 160px;
+            width: 17vw;
+        }
+        p {
+            color: $black;
+            font-family: 'OpenSans Regular';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 1.25em;
+            line-height: 32px;
+            span {
+                color: $danger;
+            }
+        }
+    }
 }
 </style>
