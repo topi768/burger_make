@@ -1,17 +1,24 @@
 <template>
     <div class="wrapper" >
-        <div class="burger-composition"
-  
-        >
+        <transition name="excess-message-fade" >
+            <div v-show="isExcess" class="excess-message">
+                <div class="excess-message__trigon" ></div>
+                <div class="excess-message__content" >
+                    <p>You are sure?</p>
+                </div>
+            </div>
+        </transition>
+
+        <div class="burger-composition">
             <transition-group name="ingredient-list"  >
                 <div 
                     class="burger-composition__layer"
                     v-for="(layer, index) in $store.state.burgerCompositionWithLayot"
                     :key="layer[0]"
                     :style="{'margin-bottom': layer[0].negativeMargin + 'px', 'z-index': index}"
-                    
                 >
                     <img
+                        
                         :src="[layer.length == 1 ? require(`@/assets/img/makeBurger/ingredients/${layer[0].name}.png`):  require('@/assets/img/makeBurger/ingredients/' + layer[0].name + layer.length +'.png')]"
                         :class="layer[0].name"
                     >
@@ -25,44 +32,32 @@
             </transition-group>
         </div>
     </div>
-
 </template>
 
 <script>
 export default {
     props: {
-        burgerCompositionWithLayot: {
-            type: Array,
-            required :true
-        }
+        // burgerCompositionWithLayot: {
+        //     type: Array,
+        //     required :true
+        // }
     },
     data() {
         return {
-             startHeight: '',
-             endHeight: '',
-             deltaSize :0,
+
+             yPositionBunTop: 0,
+             isExcess: false
         }
     },
     mounted(){
-        this.startHeight = document.querySelector('.burger-composition').clientHeight
-
     },
     computed: {
-        // overflowHasOccurred() {
-        //     return console.log(this.startSize);
 
-        // }
     },
     watch: {
-        burgerCompositionWithLayot: {
-            handler(oldBurgerComposition, newBurgerComposition) {
-                this.endHeight =  document.querySelector('.burger-composition').clientHeight
-                if (this.endHeight > this.startHeight ) {
-                    this.deltaSize =this.startHeight - this.endHeight
-                }else {
-                    this.deltaSize =0
-                }
-            },
+        '$store.getters.burgerCompositionWithLayot': function () {
+            this.topPositionBunTop = document.querySelector('.bun_top').getBoundingClientRect().top
+            this.isExcess = this.topPositionBunTop < 0 
         }
     },
     methods: {
@@ -72,7 +67,7 @@ export default {
             el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
             el.style.width = width
             el.style.height = height
-        }
+        },
     }
 }
 </script>
@@ -107,6 +102,20 @@ export default {
   transform: translateX(30px);
   
 }
+//excess-message-fade 
+
+.excess-message-fade-enter-active,
+.excess-message-fade-leave-active {
+  transition: all 0.3s ease-in-out;;
+
+}
+
+.excess-message-fade-enter-from,
+.excess-message-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+  
+}
 
 //
 .wrapper {
@@ -119,10 +128,49 @@ export default {
     background-size: contain;
     background-position: center;
 }
+.excess-message {
+    position: absolute;
+    right: 0;
+    padding: 1px 18px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 16px;
+    background: $white;
+    z-index: 1000;
+    &__trigon {
+        position: absolute;
+        top: -38px;
+        left: 30px;
+        border: 20px solid transparent; 
+        border-bottom: 20px solid $white;;
+    }
+    &__content {
+        padding: 1px 0 0 0;
+
+        p {
+            text-align: center;
+            font-family: "OpenSans SemiBold";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 1.25em;
+            line-height: 32px;
+            color: $black;
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+        p:before {
+            display: block;
+            position: relative;
+            content: url('@/assets/ico/image22.png');
+            top: 6px;
+            right: 5px;
+        }
+    }
+}
 .burger-composition {
-    transform: translateY(-400px);
-    min-height: 600px;
-    height: 1000px;
+    transform: translateY(-1400px);
+    min-height: 1000px;
+    height: 2000px;
     position: absolute;
     top: 0;
     left: 0;
@@ -152,13 +200,13 @@ export default {
         display: flex;
         align-items: center;
         position: absolute;
-        bottom: -8%;
-        right: -30%;
+        bottom: -4%;
+        right: -40%;
         z-index: 100;
         @media (max-width: $lg) {
             flex-direction: column;
             right: -10%;
-            bottom: -13%;
+            bottom: -10%;
         }
         img {
             max-width: 160px;

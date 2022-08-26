@@ -1,7 +1,9 @@
 
 export const postModule = {
     state: () => ({
-
+        startHeight: '',
+        endHeight: '',
+        deltaSize :0,
     }),
     getters: {
 
@@ -12,5 +14,5 @@ export const postModule = {
     actions: {
 
     },
-    // namespaced: true
+    namespaced: true
 }

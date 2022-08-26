@@ -11,7 +11,7 @@ export default createStore({
     totalTime: 0,
     totalOz: 0,
     totalKcal: 0,
-    giftShow: false 
+    giftShow: false
 
   },
   getters: {//изменения computed свойства, обязательно возвращают что то
