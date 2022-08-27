@@ -56,8 +56,9 @@ export default {
     },
     watch: {
         '$store.getters.burgerCompositionWithLayot': function () {
-            this.topPositionBunTop = document.querySelector('.bun_top').getBoundingClientRect().top
-            this.isExcess = this.topPositionBunTop < 0 
+            this.topPositionBunTop = document.querySelector('.bun_top').getBoundingClientRect().top + window.scrollY
+            this.isExcess = this.topPositionBunTop < 0
+            // console.log( document.querySelector('.bun_top').getBoundingClientRect());
         }
     },
     methods: {
