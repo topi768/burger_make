@@ -17,8 +17,7 @@
                     :key="layer[0]"
                     :style="{'margin-bottom': layer[0].negativeMargin + 'px', 'z-index': index}"
                 >
-                    <img
-                        
+                    <img     
                         :src="[layer.length == 1 ? require(`@/assets/img/makeBurger/ingredients/${layer[0].name}.png`):  require('@/assets/img/makeBurger/ingredients/' + layer[0].name + layer.length +'.png')]"
                         :class="layer[0].name"
                     >
@@ -32,6 +31,7 @@
             </transition-group>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -44,9 +44,8 @@ export default {
     },
     data() {
         return {
+             isExcess: false,
 
-             yPositionBunTop: 0,
-             isExcess: false
         }
     },
     mounted(){

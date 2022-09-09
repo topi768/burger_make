@@ -14,7 +14,6 @@
   <div class="header__burger"  >
     <div class="burger__btn" @click.stop="openBurger" >
       <span class="burger__span"></span>
-
     </div>
     <div class="burger__menu">
       <p class="telephone-number">8 800 437-87-22</p>
@@ -34,7 +33,7 @@ export default {
     return {
       isDiscoverChecked: true,
       isMakeBurgerChecked: false,
-      isBurgerActive: false
+      isBurgerActive: false,
     }
   },
   methods: {

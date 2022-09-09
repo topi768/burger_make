@@ -145,7 +145,7 @@ export default {
         }
     }
     .choice-of-ingredients{
-        margin: 5% 0 0 0;
+        margin: 3.5% 0 0 0;
         width: 100%;
         padding: 5px;
         display: flex;

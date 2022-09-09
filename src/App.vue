@@ -1,7 +1,6 @@
 <template>
   <my-header></my-header>
 
-
   <router-view></router-view>
 </template>
 
@@ -10,6 +9,11 @@ import MyHeader from "@/components/MyHeader";
 export default {
   components: {
     MyHeader
+  },
+  data() {
+    return {
+
+    }
   }
 }
 </script>

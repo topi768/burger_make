@@ -3,7 +3,7 @@
         <h2 class="price-tag__title">Summary</h2>
         <div class="price-tag__price" >
             <p class="price-tag__value" >${{$store.getters.totalPrice}}</p>
-            <button class="price-tag__button">Checkout</button>
+            <button class="price-tag__button" @click="showDialog" >Checkout</button>
         </div>
 
         <transition name="gift-fade-text" >
@@ -16,22 +16,45 @@
             <div class="info__item" >{{$store.getters.totalKcal}} kcal</div>
 
         </div>
+        <transition name="dialog-fade">
+            <my-dialog v-model:show="dialogVisible" ></my-dialog>
+
+        </transition>
+
     </div>
-
-
 </template>
 
 <script>
+
 export default {
     data(){
         return {
+            dialogVisible : false,
         }
-    }
+    },
+    methods: {
+        showDialog() {
+            document.querySelector("html").classList.add("lock")
+            this.dialogVisible = true
+       
+        }
+    },
+
 }
 </script>
 
 <style lang="scss" scoped >
 @import "@/assets/variables.scss";
+//
+.dialog-fade-enter-active,
+.dialog-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.dialog-fade-enter-from,
+.dialog-fade-leave-to {
+  opacity: 0;
+}
 //
 .gift-fade-text-enter-active,
 .gift-fade-text-leave-active {
@@ -107,7 +130,6 @@ export default {
         justify-content: space-around;
         align-items: center;
         padding:  4% 3%;
-        // margin: 5% 0 0 0;
         background: $titanWhite;
         border-radius: 32px;
     
