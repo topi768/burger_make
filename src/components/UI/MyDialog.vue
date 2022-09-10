@@ -11,15 +11,15 @@
             <div class="dialog__flex-container">
                 <div class="dialog__item" >
                     <h3>Your Name</h3>
-                    <input class="dialog__value" value="Jerome Porter" type="text">
+                    <input class="dialog__value" v-model="name" type="text">
                 </div>
                 <div class="dialog__item" >
                     <h3>Phone Number</h3>
-                    <input pattern="[0-9]{10}" class="dialog__value dialog__input--tel"  type="tel">
+                    <input v-model="tel" pattern="[0-9]{10}" class="dialog__value dialog__input--tel"  type="tel">
                 </div>
                 <div class="dialog__item" >
                     <h3>Shipping Address</h3>
-                    <input class="dialog__value" type="text">
+                    <input v-model="address" class="dialog__value" type="text">
                 </div>
                 <div class="dialog__item" >
                     <h3>Time to Delivery</h3>
@@ -31,7 +31,7 @@
                     </select>
                 </div>
             </div>
-            <button @click="hideDialog" class="dialog__button dialog__button2" >Checkout</button>
+            <button  @click="checkFieldsInput" class="dialog__button dialog__button2" >Checkout</button>
             <button @click="hideDialog" class="dialog__button dialog__button1" >Cancel</button>
         </div>
 
@@ -52,7 +52,11 @@ export default {
     data() {
         return {
             element: '',
-            timeNow: new Date().getHours()
+            timeNow: new Date().getHours(),
+            name: '',
+            tel: '',
+            address: ''
+
         }
     },
     methods: {
@@ -60,6 +64,17 @@ export default {
             this.$emit('update:show', false)
             document.querySelector("html").classList.remove('lock')
         },
+        checkFieldsInput() {
+            if (this.name == '' || this.tel.length != 15 || this.address == ''  ) {
+                event.target.classList.add('shake')
+                event.target.addEventListener("animationend", () => event.target.classList.remove('shake'));
+
+            }else {
+                this.hideDialog()
+            }
+            // event.target.classList.remove('shake')
+
+        }
 
     },
     mounted() {
@@ -75,6 +90,35 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/variables.scss";
+//
+.shake {
+  animation: shake 0.8s;
+}
+// .shake {
+//   animation: shake 0.5s reverse;
+// }
+@keyframes shake {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+//
 .dialog {
     top: 0;
     left: 0;
