@@ -1,6 +1,7 @@
 // import MyHeader from "@/components/UI/MyHeader"
 import MyLogo from "@/components/UI/MyLogo"
 import MyDialog from "@/components/UI/MyDialog"
+import MyTitle from "@/components/UI/MyDialog"
 
 
 
@@ -8,6 +9,7 @@ import MyDialog from "@/components/UI/MyDialog"
 export default [
     MyLogo,
     MyDialog,
+    MyTitle
     
 
 ]

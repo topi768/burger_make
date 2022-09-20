@@ -12,16 +12,19 @@
         </div>
     </div>
     <router-view/>
-
+    <additional-content-on-mobile v-if="$store.state.isMobile"></additional-content-on-mobile>
 </div>
 
     
 </template>
 
 <script>
+import AdditionalContentOnMobile from "@/components/AdditionalContentOnMobile";
 
 export default {
-
+    components: {
+        AdditionalContentOnMobile
+    },
 }
 </script>
 

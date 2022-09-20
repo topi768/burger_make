@@ -2,17 +2,28 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {//исходные  значение
+    ingredients:[
+      {name:'cutlet', count:0, price: 2, kcal: 249, time: 4, oz: 0.2, negativeMargin: -100, maxInLayer: 1, id:'cutlet' },
+      {name:'mayo', count:0, price: 0.2, kcal: 300, time: 2, oz: 0.1, negativeMargin: -120, maxInLayer: 1, id: 'mayo'},
+      {name:'onion', count:0, price: 0.4, kcal: 50, time: 3, oz: 0.1, negativeMargin: -120, maxInLayer: 3, id: 'onion'},
+      {name:'tomato', count:0, price: 1, kcal: 129, time: 2, oz: 0.2, negativeMargin: -110, maxInLayer: 2, id: 'tomato'},
+      {name:'cucumber', count:0, price: 0.2, kcal: 100, time: 3, oz: 0.2, negativeMargin: -110, maxInLayer: 3, id: 'cucumber'},
+      {name:'cheese', count:0, price: 0.5, kcal: 52, time: 4, oz: 0.2, negativeMargin: -125, maxInLayer: 1, id:'cheese' },
+      {name:'salad', count:0, price: 0.2, kcal: 40, time: 4, oz: 0.1, negativeMargin: -120, maxInLayer: 1, id: 'salad'},
+      {name:'bun', count:0, price: 1, kcal: 100, time: 4, oz: 0.2, negativeMargin: -95, maxInLayer: 1, id: 'bun'},
+  ],
     burgerComposition: [
         {name:'bun_bottom', count:0, price: 0, kcal: 249, time: 4, oz: 0.2, negativeMargin: -50, maxInLayer: 1,id: 'bun_bottom'},
         {name:'bun_top', count:0, price: 0, kcal: 249, time: 4, oz: 0.2, negativeMargin: -75, maxInLayer: 1, id: 'bun_top'},
     ],
+    
     burgerCompositionWithLayot: [],
     totalPrice:0,
     totalTime: 0,
     totalOz: 0,
     totalKcal: 0,
     giftShow: false,
-
+    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)? true: false
   },
   getters: {//изменения computed свойства, обязательно возвращают что то
     burgerCompositionWithLayot(state) {
@@ -58,9 +69,6 @@ export default createStore({
     }else {
       return state.totalOz.toFixed(1)
     }
-    
-
-    
   },
   totalKcal(state) {
     state.totalKcal = state.burgerComposition.reduce((totalKcal, ingredient ) => {
@@ -76,7 +84,8 @@ export default createStore({
     }else {
       return state.giftShow = false
     }
-  }
+  },
+
 },
   mutations: {//изменения состояний
     incrementBurgerComposition(state, ingredient) {
@@ -87,9 +96,8 @@ export default createStore({
       state.burgerComposition.splice(state.burgerComposition.findIndex(n => n.name == ingredient.name),1 )
     }
   },
-  actions: {//функции с мутациями
-    
-
+  isMobile(state, isMobile) {
+    state.isMobile = isMobile
   },
   modules: {
 

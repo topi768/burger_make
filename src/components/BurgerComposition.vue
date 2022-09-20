@@ -23,7 +23,7 @@
                     >
                 </div>
                 <transition @before-leave="beforeLeave" name="ketchup-fade" >
-                    <div v-show="$store.getters.giftShow"  class="ketchup" >
+                    <div v-show="giftShow"  class="ketchup" >
                         <img src="@/assets/img/makeBurger/ketchup.png"  alt="">
                         <p><span>+ Tomato Ketchup</span> 1.2 oz  </p>
                     </div>
@@ -51,7 +51,9 @@ export default {
     mounted(){
     },
     computed: {
-
+        giftShow() {
+            return this.$store.state.giftShow
+        }
     },
     watch: {
         '$store.getters.burgerCompositionWithLayot': function () {
@@ -127,6 +129,11 @@ export default {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    @media(max-width:$md) {
+        width: 100%;
+        display: flex;
+        justify-content:center;
+    }
 }
 .excess-message {
     position: absolute;

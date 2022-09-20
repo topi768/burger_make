@@ -2,6 +2,7 @@ import Discover from "@/pages/Discover";
 import {createRouter, createWebHistory} from "vue-router";
 
 import MakeBurger from "@/pages/MakeBurger";
+// import DiscoverMobule from "@/pages/DiscoverMobule";
 
 
 
@@ -14,7 +15,7 @@ const routes = [
         path: '/makeBurger',
         component: MakeBurger
     },
-
+    
 ]
 
 const router = createRouter({
