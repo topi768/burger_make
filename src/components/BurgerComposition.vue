@@ -25,7 +25,7 @@
                 <transition @before-leave="beforeLeave" name="ketchup-fade" >
                     <div v-show="giftShow"  class="ketchup" >
                         <img src="@/assets/img/makeBurger/ketchup.png"  alt="">
-                        <p><span>+ Tomato Ketchup</span> 1.2 oz  </p>
+                        <p v-if="! $store.state.isMobile " ><span>+ Tomato Ketchup</span> 1.2 oz  </p>
                     </div>
                 </transition>
             </transition-group>
@@ -121,6 +121,7 @@ export default {
 
 //
 .wrapper {
+    z-index: -1;
     width: 40%;
     position: relative;
     min-height: 600px;
@@ -210,14 +211,15 @@ export default {
         bottom: -4%;
         right: -40%;
         z-index: 100;
-        @media (max-width: $lg) {
+        @media (max-width: $md) {
             flex-direction: column;
-            right: -10%;
-            bottom: -10%;
+            right: -1.5%;
+            bottom: -2%;
         }
         img {
             max-width: 160px;
             width: 17vw;
+            min-width: 97px;
         }
         p {
             color: $black;

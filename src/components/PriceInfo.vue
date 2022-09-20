@@ -23,6 +23,7 @@ export default {
         line-height: 20px;
         position: absolute;
         width: 100%;
+        
         bottom: 0;
         display: flex;
         justify-content: space-around;
@@ -32,7 +33,7 @@ export default {
         border-radius: 32px;
         @media(max-width:$md) {
             margin: 10% 0 0 0;
-            position: static;
+            
         }   
         .info__item {
             font-size: 0.875em;
