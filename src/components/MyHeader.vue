@@ -17,8 +17,8 @@
     </div>
     <div class="burger__menu">
       <p class="telephone-number">8 800 437-87-22</p>
-      <a class="nav__item nav__item1" @click.stop="openBurger"  :href="$store.state.isMobile ? '#discover' : ''" id="nav__item1">Discover</a>
-      <a class="nav__item nav__item2" @click.stop="openBurger"  :href="$store.state.isMobile ? '#burger-composition' : ''" id="nav__item2">Make Your Burger</a>
+      <a class="nav__item nav__item1" @click.stop="openBurger" href="#discover" id="nav__item1">Discover</a>
+      <a class="nav__item nav__item2" @click.stop="openBurger" href="#burger-composition" id="nav__item2">Make Your Burger</a>
     </div>
   </div>
   </header>

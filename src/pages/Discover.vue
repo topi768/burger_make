@@ -5,12 +5,22 @@
             <h1 class="title">Make Your Burger</h1>
             <div class="img__wrapper">
                 <img class="main-img" src="@/assets/img/discover/mainImg.png" alt="">
-                <a 
+                <a
+                    v-if="$store.state.isMobile " 
+                    class="button"  
+                    href="#burger-composition" 
+                    
+                    >
+                    <p>MAKE BURGER</p>
+                </a>
+                <button
+                    v-else
                     class="button"  
                     @click="$router.push('/makeBurger')"
                     >
-                    <p>make burger</p>
-                </a>
+                    <p>MAKE BURGER</p>
+                </button>
+    
             </div>
         </div>
     </div>
@@ -69,9 +79,12 @@ export default {
             }
             .button{
                 p {
-                    width: min-content;
+                    
+                    text-decoration: none;
+                    width: min-content ;
                     text-align: center;
                 }
+                color: $white;
                 
                 text-decoration: none;
                 position: absolute;
