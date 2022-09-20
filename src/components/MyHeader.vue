@@ -17,8 +17,8 @@
     </div>
     <div class="burger__menu">
       <p class="telephone-number">8 800 437-87-22</p>
-      <div class="nav__item nav__item1" id="nav__item1">Discover</div>
-      <div class="nav__item nav__item2" id="nav__item2">Make Your Burger</div>
+      <a class="nav__item nav__item1" @click.stop="openBurger"  :href="$store.state.isMobile ? '#discover' : ''" id="nav__item1">Discover</a>
+      <a class="nav__item nav__item2" @click.stop="openBurger"  :href="$store.state.isMobile ? '#burger-composition' : ''" id="nav__item2">Make Your Burger</a>
     </div>
   </div>
   </header>
@@ -34,6 +34,7 @@ export default {
       isDiscoverChecked: true,
       isMakeBurgerChecked: false,
       isBurgerActive: false,
+      burger__btn: ''
     }
   },
   methods: {
@@ -44,8 +45,10 @@ export default {
         return false
       }
     },
+
   openBurger(){
-    event.currentTarget.classList.toggle("active")
+    this.burger__btn = document.querySelector('.burger__btn')
+    this.burger__btn.classList.toggle("active")
     if (this.isBurgerActive == false) {
       this.isBurgerActive = true
       document.querySelector("html").classList.add('lock')
@@ -100,14 +103,17 @@ body {
   font-size: 1rem;
   .nav__item {
     margin: 0 0 0 25%;
-    @media (max-width: $lg) {
+    color: $black;
+    text-decoration: none;
+    @media (max-width: $md) {
       margin: 0
     }
   }
   .nav {
     display: flex;
     align-items: center;
-    @media (max-width: $lg) {
+    color: inherit;
+    @media (max-width: $md) {
       .nav__item{
         display: none;
       }
@@ -117,7 +123,7 @@ body {
   .nav__call{
     display: flex;
     align-items: center;
-    @media (max-width: $lg) {
+    @media (max-width: $md) {
       .telephone-number{
         display: none;
       }
@@ -141,7 +147,7 @@ body {
         margin: 0 5px 0 0;
         
       }
-      @media (max-width: $lg) {
+      @media (max-width: $md) {
         transform: translateX(0)
       }
     }
@@ -150,7 +156,7 @@ body {
   //burger
   .header__burger {
     display: none;
-    @media (max-width: $lg) {
+    @media (max-width: $md) {
       display: block;
     }
     .burger__btn {

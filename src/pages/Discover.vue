@@ -5,9 +5,12 @@
             <h1 class="title">Make Your Burger</h1>
             <div class="img__wrapper">
                 <img class="main-img" src="@/assets/img/discover/mainImg.png" alt="">
-                <button class="button" @click="$router.push('/makeBurger')" >
+                <a 
+                    class="button"  
+                    @click="$router.push('/makeBurger')"
+                    >
                     <p>make burger</p>
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -32,6 +35,7 @@ export default {
 @import "@/assets/variables.scss";
 
 .content {
+    
     .flex-container {
         display: flex;
         justify-content: space-between;
@@ -64,6 +68,12 @@ export default {
                 height: 100%;
             }
             .button{
+                p {
+                    width: min-content;
+                    text-align: center;
+                }
+                
+                text-decoration: none;
                 position: absolute;
                 top: 60%;
                 left: -10%;

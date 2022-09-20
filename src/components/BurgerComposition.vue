@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" >
+    <div class="wrapper" id="burger-composition" >
         <transition name="excess-message-fade" >
             <div v-show="isExcess" class="excess-message">
                 <div class="excess-message__trigon" ></div>
