@@ -23,7 +23,7 @@
                     >
                 </div>
                 <transition @before-leave="beforeLeave" name="ketchup-fade" >
-                    <div v-show="giftShow"  class="ketchup" >
+                    <div v-show="$store.state.totalPrice >= 10"  class="ketchup" >
                         <img src="@/assets/img/makeBurger/ketchup.png"  alt="">
                         <p v-if="! $store.state.isMobile " ><span>+ Tomato Ketchup</span> 1.2 oz  </p>
                     </div>

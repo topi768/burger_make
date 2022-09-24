@@ -7,7 +7,7 @@
         </div>
 
         <transition name="gift-fade-text" >
-            <p class="price-tag__gift" v-show="!$store.getters.giftShow" >Build a <em>$10</em> Burger and Get a Gift</p>
+            <p class="price-tag__gift" v-show="!$store.getters.totalPrice >= 10" >Build a <em>$10</em> Burger and Get a Gift</p>
         </transition>
         
         <price-info ></price-info >
@@ -31,6 +31,7 @@ export default {
             dialogVisible : false,
         }
     },
+
     methods: {
         showDialog() {
             document.querySelector("html").classList.add("lock")

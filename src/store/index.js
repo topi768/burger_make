@@ -63,6 +63,7 @@ export default createStore({
       state.totalOz = state.burgerComposition.reduce((totalOz, ingredient ) => {
       return totalOz + ingredient.oz 
     }, 0)
+
     if (state.giftShow) {
       state.totalOz += 1.2
       return state.totalOz.toFixed(1)
